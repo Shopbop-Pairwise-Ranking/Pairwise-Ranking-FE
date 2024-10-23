@@ -1,6 +1,9 @@
-# PairwiseRanking
+# Pairwise Ranking Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
+
+## Description
+This project is part of a dynamic fashion discovery platform for Shopbop, an Amazon company, designed to enhance customer engagement through social and interactive shopping experiences. The frontend, built with Angular, enables users to compare and rank fashion items in a pairwise ranking system. The data collected from user choices is used to display leaderboards of popular items by category. This repository contains the Angular code for the UI, which integrates with Shopbop's API to pull product information.
 
 ## Development server
 
