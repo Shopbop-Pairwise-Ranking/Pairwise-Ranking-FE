@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+/* styles.scss */
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+}

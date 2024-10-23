@@ -1,0 +1,123 @@
+.navbar-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  /* First Row: Banner */
+  .banner {
+    background-color: #F8F7F7;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        margin-right: 12px;
+    }
+  }
+  
+  /* Second Row: Main Navbar (Location, Language, Logo, Sign-in, etc.) */
+  .navbar-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5rem;
+  }
+  
+  .navbar-left {
+    display: flex;
+    flex:1;
+    align-items: center;
+  }
+  
+  .dropdown {
+    margin-right: 1rem;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: rgba(255, 230, 230, 0.45);
+    font-size: 0.9rem;
+    span {
+      margin: 0px 4px;
+    }
+  }
+
+  
+  .navbar-center {
+    display: flex;
+    flex:1;
+    justify-content: center;
+  }
+  
+  .logo {
+    height: 40px; /* Adjust based on logo size */
+  }
+  
+  .navbar-right {
+    display: flex;
+    flex:1;
+    align-items: center;
+    justify-content: end;
+  }
+  
+  .navbar-right a {
+    margin-left: 1rem;
+    color: black;
+  }
+
+  .navbar-heart {
+    color:#EA4335;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    background: rgba(255, 230, 230, 0.45);
+    border-radius: 10px;
+    padding:4px 12px;
+  
+    input {
+      padding: 0.5rem;
+      border: none;
+      background: transparent;
+    }
+  
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+  }
+  
+  /* Third Row: Navigation Links */
+  .navbar-links {
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    background-color: #FFFFFF;
+  }
+  
+  .navbar-links a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1rem;
+    margin: 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-bottom-color 0.2s;
+  }
+  
+  .navbar-links a:hover {
+    color: #ffaf87; /* Highlight color on hover */
+  }
+  
+  .navbar-links a.active {
+    color: #008547; /* Active link color */
+    font-weight: 700;
+  }
+  
