@@ -1,0 +1,50 @@
+<app-banner-top></app-banner-top>
+<div class="product-ranking-container">
+  <!-- Left Side Instruction Section -->
+  <div class="left-section">
+    <h2>Welcome to Pairwise Ranking</h2>
+    <div class="instruction-box">
+      <p>To get started with <strong>click</strong> on one of the styles that you <strong>like the most.</strong></p>
+      <p>If none of the options suit your taste, feel free to <strong>pass</strong> and you will be presented with a new set of options.</p>
+      <p>You’ll be given <strong>10 sets</strong> of options from your chosen category.</p>
+      <p>You’ll get your list of ranked items at the end.</p>
+      <h3>Happy Ranking</h3>
+    </div>
+    <button class="pass-button" (click)="onPassClick()">Pass</button>
+    <!-- <app-rank-card
+      [imageSrc]="'assets/images/product1.jpg'"
+      [altText]="'Rendoll White Elena Dress'"
+      [brand]="'Rendoll'"
+      [name]="'White Elena Dress'"
+      [price]="'$350.00'"
+      [rank]="1"
+    ></app-rank-card> -->
+
+  </div>
+
+  <!-- Right Side Product Selection Section -->
+  <div class="right-section">
+    <h2>Select your favorite clothing item</h2>
+    <div class="product-cards">
+      <app-product-card
+        [imageSrc]="product1.imageSrc"
+        [altText]="product1.altText"
+        [brand]="product1.brand"
+        [name]="product1.name"
+        [price]="product1.price"
+        (productClick)="onProductClick(product1)"
+      ></app-product-card>
+
+      <div class="or-separator">OR</div>
+
+      <app-product-card
+        [imageSrc]="product2.imageSrc"
+        [altText]="product2.altText"
+        [brand]="product2.brand"
+        [name]="product2.name"
+        [price]="product2.price"
+        (productClick)="onProductClick(product2)"
+      ></app-product-card>
+    </div>
+  </div>
+</div>

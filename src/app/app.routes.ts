@@ -1,18 +1,49 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { RankingComponent } from './pages/ranking/ranking.component';
+import { CategoryGenderComponent } from './pages/category-gender/category-gender.component';
+import { CategoryClothingComponent } from './pages/category-clothing/category-clothing.component';
+import { ProductRankingComponent } from './pages/product-ranking/product-ranking.component';
+
 export const routes: Routes = [
     {
         path: '',
-        component: HomeComponent
+        redirectTo: 'ranking',
+        pathMatch: 'full'
     },
     {
         path: 'ranking',
-        component: RankingComponent
+        children: [
+            {
+                path: '',
+                component: HomeComponent,
+            },
+            {
+                path: 'category',
+                children: [
+                    {
+                        path: '',
+                        component: CategoryGenderComponent
+                    },
+                    {
+                        path: 'clothing/:gender',
+                        children: [
+                            {
+                                path: '',
+                                component: CategoryClothingComponent
+                            },
+                            {
+                                path: ':product',
+                                component: ProductRankingComponent
+                            }
+                        ]
+                    }
+
+                ]
+            }
+        ]
     },
     {
         path: '**',
-        redirectTo: '',
-        pathMatch: 'full'
+        redirectTo: 'ranking' // Redirect all other paths to /ranking
     }
 ];

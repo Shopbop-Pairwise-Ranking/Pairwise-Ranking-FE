@@ -1,0 +1,24 @@
+.category-selection-container {
+    text-align: center;
+    padding: 2rem;
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+    }
+  
+    .image-cards {
+      display: flex;
+      justify-content: center;
+      align-items: stretch; // Ensure all cards have the same height
+      gap: 5rem; // Space between the cards
+      flex-wrap: wrap; // Allows the cards to wrap on smaller screens
+      height: 620px;
+    }
+  
+    app-image-card {
+      flex: 1 1 25%; // Control width, allow height to adjust
+      max-width: 400px; // Maximum width for larger screens
+    }
+  }
+  

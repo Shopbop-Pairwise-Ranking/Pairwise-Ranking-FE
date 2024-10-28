@@ -1,0 +1,13 @@
+<app-banner-top></app-banner-top>
+<div class="category-selection-container">
+    <h2>Select your favorite clothing category</h2>
+    <div class="image-cards">
+        <app-image-card
+          *ngFor="let category of categories"
+          [imageSrc]="category.imageSrc"
+          [altText]="category.altText"
+          [buttonText]="category.buttonText"
+          (buttonClick)="onProductClick(category.buttonText)"
+        ></app-image-card>
+    </div>
+</div>
