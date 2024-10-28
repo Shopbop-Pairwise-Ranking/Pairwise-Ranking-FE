@@ -21,7 +21,7 @@ export class CategoryClothingComponent implements OnInit {
     {
       imageSrc: 'assets/images/denims.jpg',
       altText: 'Image of a woman wearing denims.',
-      buttonText: 'Denims'
+      buttonText: 'Jeans'
     },
     {
       imageSrc: 'assets/images/skirt.jpg',
