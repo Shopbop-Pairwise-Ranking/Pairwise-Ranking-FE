@@ -10,20 +10,19 @@ import { faHeart, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
   imports: [FontAwesomeModule]
 })
 export class RankCardComponent {
-  @Input() imageSrc: string = '';           // Product image
-  @Input() altText: string = 'Product Image'; // Alt text for accessibility
-  @Input() brand: string = '';              // Product brand
-  @Input() name: string = '';               // Product name
-  @Input() price: string = '';              // Product price
-  @Input() rank: number = 1;                // Rank number
+  @Input() imageSrc: string = '';
+  @Input() altText: string = 'Product Image';
+  @Input() brand: string = '';
+  @Input() name: string = '';
+  @Input() price: string = '';
+  @Input() rank: number = 1;
 
-  @Output() wishlistClick = new EventEmitter<void>(); // Event for wishlist button
-  @Output() cartClick = new EventEmitter<void>();     // Event for cart button
+  @Output() wishlistClick = new EventEmitter<void>();
+  @Output() cartClick = new EventEmitter<void>();
 
   faHeart = faHeart;
   faShopping = faShoppingBag;
 
-  // Functions to emit events
   onWishlistClick() {
     this.wishlistClick.emit();
   }

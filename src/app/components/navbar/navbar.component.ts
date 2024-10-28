@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHeart, faShoppingBag, faSearch, faLocationDot, faChevronDown, faDollarSign, faGlobe } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,10 +8,11 @@ import { faHeart, faShoppingBag, faSearch, faLocationDot, faChevronDown, faDolla
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [FontAwesomeModule] // Import FontAwesomeModule directly here
+  imports: [FontAwesomeModule]
 })
 export class NavbarComponent {
-  // Define the icons
+  constructor (private router: Router) {}
+
   faHeart = faHeart;
   faShoppingBag = faShoppingBag;
   faSearch = faSearch;
@@ -18,4 +20,8 @@ export class NavbarComponent {
   faChevronDown = faChevronDown;
   faDollar = faDollarSign;
   faGlobe = faGlobe
+
+  onLogoClick() {
+    this.router.navigate(['/ranking']);
+  }
 }

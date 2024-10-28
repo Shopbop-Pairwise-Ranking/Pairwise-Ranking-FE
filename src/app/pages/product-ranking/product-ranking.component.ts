@@ -35,12 +35,11 @@ export class ProductRankingComponent implements OnInit {
   rounds: any = {};
   currentRound = 1;
   productsToShow: Product[] = [];
-  userId: string = 'user123'; // Example user ID, replace with actual
+  userId: string = 'user123';
 
-  // State variables
   ratings: Rating[] = [];
-  isLoading: boolean = true; // Track loading state
-  isCompleted: boolean = false; // Track completion state
+  isLoading: boolean = true;
+  isCompleted: boolean = false;
 
   private iconLibrary = inject(FaIconLibrary);
 
@@ -49,20 +48,20 @@ export class ProductRankingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchProductRanking(this.userId, this.product, this.gender); // Replace 'woman' dynamically
+    this.fetchProducts(this.userId, this.product, this.gender);
   }
 
-  fetchProductRanking(userId: string, productCategory: string, gender: string) {
-    this.isLoading = true; // Start loading
-    this.productRankingService.getProductRanking(userId, productCategory, gender).subscribe(
+  fetchProducts(userId: string, productCategory: string, gender: string) {
+    this.isLoading = true;
+    this.productRankingService.getProducts(userId, productCategory, gender).subscribe(
       (response) => {
         this.rounds = response;
         this.updateRound();
-        this.isLoading = false; // Stop loading
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error fetching product ranking:', error);
-        this.isLoading = false; // Stop loading even on error
+        this.isLoading = false;
       }
     );
   }
@@ -83,14 +82,13 @@ export class ProductRankingComponent implements OnInit {
 
     this.productRankingService.submitSelection(payload).subscribe(
       (response) => {
-        this.updateRatings(response, productA, productB);
+        this.updateRatings(response.updatedRatings, productA, productB);
 
-        // Proceed to the next round if available
         if (this.currentRound < Object.keys(this.rounds).length) {
           this.currentRound++;
           this.updateRound();
         } else {
-          this.isCompleted = true; // Mark as completed after the last round
+          this.isCompleted = true;
         }
       },
       (error) => {
@@ -100,20 +98,18 @@ export class ProductRankingComponent implements OnInit {
   }
 
   updateRatings(response: any, productA: Product, productB: Product) {
-    const { itemA_sin, itemB_sin } = response;
-
     const existingA = this.ratings.find(r => r.sin === productA.productSin);
     if (existingA) {
-      existingA.rating = itemA_sin;
+      existingA.rating = response[productA.productSin];
     } else {
-      this.ratings.push({ sin: productA.productSin, rating: itemA_sin, product: productA });
+      this.ratings.push({ sin: productA.productSin, rating: response[productA.productSin], product: productA });
     }
 
     const existingB = this.ratings.find(r => r.sin === productB.productSin);
     if (existingB) {
-      existingB.rating = itemB_sin;
+      existingB.rating = response[productB.productSin];
     } else {
-      this.ratings.push({ sin: productB.productSin, rating: itemB_sin, product: productB });
+      this.ratings.push({ sin: productB.productSin, rating: response[productB.productSin], product: productB });
     }
 
     this.ratings.sort((a, b) => b.rating - a.rating);
@@ -124,7 +120,7 @@ export class ProductRankingComponent implements OnInit {
       this.currentRound++;
       this.updateRound();
     } else {
-      this.isCompleted = true; // Mark as completed after the last round
+      this.isCompleted = true;
     }
   }
 

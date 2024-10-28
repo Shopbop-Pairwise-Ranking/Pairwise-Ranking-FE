@@ -3,11 +3,11 @@
   justify-content: space-between;
   padding: 4rem 6rem;
   gap: 2rem;
-  flex-wrap: nowrap; // Prevent wrap to maintain consistent alignment
+  flex-wrap: nowrap;
   margin: 0 45px;
 
   .left-section {
-    width: 20%; // Using percentage width for left section
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,10 +18,10 @@
     }
 
     .instruction-box {
-      background-color: #e7f0fa; // Light blue background color
+      background-color: #e7f0fa;
       padding: 3rem;
       text-align: left;
-      margin-bottom: 1rem; // Space between the box and the pass button
+      margin-bottom: 1rem;
 
       p {
         font-size: 0.9rem;
@@ -44,7 +44,7 @@
       padding: 0.75rem 1.5rem;
       cursor: pointer;
       font-size: 1rem;
-      width: 80%; // Ensures consistent button width
+      width: 80%;
       max-width: 150px;
       transition: background-color 0.3s;
 
@@ -60,7 +60,7 @@
   }
 
   .right-section {
-    width: 75%; // Using percentage width for right section
+    width: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,11 +69,11 @@
     h2 {
       font-size: 1.5rem;
       font-weight: bold;
-      margin-bottom: 2rem; // Space between heading and product cards
+      margin-bottom: 2rem;
     }
 
     .product-cards {
-      width: 100%; // Ensures product cards container takes full width
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -82,8 +82,8 @@
       height: 600px;
 
       app-product-card {
-        width: 30%; // Set consistent width for product cards
-        height: 100%; // Ensure full height utilization
+        width: 30%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -104,7 +104,7 @@
       height: 50px;
       border: 4px solid rgba(0, 0, 0, 0.1);
       border-radius: 50%;
-      border-top-color: #000; // Spinner color
+      border-top-color: #000;
       animation: spin 1s linear infinite;
       margin-top: 2rem;
     }
@@ -113,6 +113,7 @@
       0% {
         transform: rotate(0deg);
       }
+
       100% {
         transform: rotate(360deg);
       }
@@ -121,38 +122,39 @@
     .completion-message {
       text-align: center;
       margin-top: 3rem;
-    
+
       h2 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
       }
-    
+
       p {
         font-size: 1rem;
         color: #555;
         margin-bottom: 20px;
       }
-    
+
       .coming-soon-icon {
-        font-size: 5rem; // Adjust size as needed
+        font-size: 5rem;
         color: #ffaf87;
         animation: pulse 1.5s infinite;
       }
     }
-    
-    // Add a simple pulsing effect to the clock icon
+
     @keyframes pulse {
       0% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.1);
       }
+
       100% {
         transform: scale(1);
       }
     }
-    
+
 
     .no-products {
       font-size: 1.2rem;

@@ -8,13 +8,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrl: './image-card.component.scss'
 })
 export class ImageCardComponent {
-  @Input() imageSrc: string = '';        // Path to the image
-  @Input() altText: string = 'Image';    // Alt text for accessibility
-  @Input() buttonText: string = 'Button'; // Button label
+  @Input() imageSrc: string = '';
+  @Input() altText: string = 'Image';
+  @Input() buttonText: string = 'Button';
 
-  @Output() buttonClick = new EventEmitter<void>(); // Event emitter for button click
+  @Output() buttonClick = new EventEmitter<void>();
 
-  // Function to emit the click event
   onButtonClick() {
     this.buttonClick.emit();
   }

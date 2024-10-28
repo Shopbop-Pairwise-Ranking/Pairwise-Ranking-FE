@@ -44,6 +44,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'ranking' // Redirect all other paths to /ranking
+        redirectTo: 'ranking'
     }
 ];

@@ -6,21 +6,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductRankingService {
-  private apiUrl = 'http://localhost:3000'; // Replace with your actual API URL
+  private apiBaseUrl = 'http://localhost:3000';
 
   http = inject(HttpClient);
 
-  getProductRanking(userId: string, category: string, gender: string): Observable<any> {
+  getProducts(userId: string, category: string, gender: string): Observable<any> {
     const params = `?userId=${userId}&category=${category}&gender=${gender}`;
-    return this.http.get(`${this.apiUrl}/api/getProducts${params}`, {
+    return this.http.get(`${this.apiBaseUrl}/api/getProducts${params}`, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
-  
+
   submitSelection(payload: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/submitComparison`, payload);
-  }  
+    return this.http.post(`${this.apiBaseUrl}/submitComparison`, payload);
+  }
 
 }
