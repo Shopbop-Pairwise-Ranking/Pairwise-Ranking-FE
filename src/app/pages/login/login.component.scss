@@ -7,12 +7,12 @@ $error-color: #d9534f;
 $link-color: #4285F4;
 
 // Main container
-.sign-up-container {
+.login-container {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .signup-wrapper {
+    .login-wrapper {
         width: 40%;
         margin: 50px;
         height: 100%;
@@ -66,6 +66,9 @@ $link-color: #4285F4;
                     color: $text-color;
                     margin-bottom: 0.4rem;
                 }
+                #email {
+                    margin-bottom: 1.5rem;
+                }
 
                 input[type="text"],
                 input[type="email"],
@@ -82,11 +85,11 @@ $link-color: #4285F4;
                         color: $placeholder-color;
                         font-size: 0.9rem;
                     }
-                }
 
-                #email,
-                #name {
-                    margin-bottom: 1.5rem;
+                    &:focus, &:focus-visible {
+                        border-radius: 0;
+                        outline: -webkit-focus-ring-color auto 0px;
+                    }
                 }
 
                 .password-field {
@@ -102,56 +105,10 @@ $link-color: #4285F4;
                         color: $placeholder-color;
                     }
                 }
-                
-                .password-info {
-                    font-size: 0.85rem;
-                    color: $text-color;
-                    margin: 0.4rem 0 1.5rem;
-                    display: flex;
-                    align-items: center;
 
-                    svg {
-                        margin-right: 3px;
-                        width: 16px;
-                        height: 16px;
-                    }
-                }
-
-                .terms {
-                    display: flex;
-                    align-items: center;
-                    margin: 1.2rem 0;
-
-                    label {
-                        font-size: 0.9rem;
-                        font-weight: 300;
-                        margin-bottom: 0.1rem;
-                    }
-
-                    input[type="checkbox"] {
-                        margin-right: 0.5rem;
-                        appearance: none;
-                        width: 20px;
-                        height: 20px;
-                        border: 2px solid $placeholder-color;
-                        border-radius: 4px;
-                        cursor: pointer;
-                    }
-
-                    input[type="checkbox"]:checked {
-                        background-color: $primary-color;
-                        border: none;
-
-                        &::before {
-                            content: "✓";
-                            color: #FFF;
-                            font-weight: bold;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 14px;
-                        }
-                    }
+                .forgot-password {
+                    text-align: right;
+                    margin: 1rem 0;
 
                     a {
                         color: $link-color;
@@ -187,21 +144,20 @@ $link-color: #4285F4;
                 margin: -1.2rem 0 0.4rem;
             }
 
-            .error-password,
-            .error-confirm-password {
+            .error-password {
                 margin-top: 0.4rem;
             }
+        }
 
-            .login-link {
-                margin-top: 1.5rem;
-                font-size: 0.9rem;
-                text-align: center;
-                font-weight: 300;
+        .sign-link {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 300;
 
-                a {
-                    color: $link-color;
-                    text-decoration: none;
-                }
+            a {
+                color: $link-color;
+                text-decoration: none;
             }
         }
     }

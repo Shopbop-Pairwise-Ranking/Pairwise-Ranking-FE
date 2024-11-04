@@ -28,7 +28,12 @@
       </div>
 
       <div class="navbar-right">
-        <a href="/ranking/signup" class="signup">Sign In / Register</a>
+        <ng-container *ngIf="isAuthenticated$ | async; else signUp">
+          <div class="logout" (click)="logout()">Logout</div>
+        </ng-container>
+        <ng-template #signUp>
+          <a href="/signup" class="signup">Sign In / Register</a>
+        </ng-template>
         <a href="#"><fa-icon class="navbar-heart"[icon]="faHeart"></fa-icon></a>
         <a href="#"><fa-icon [icon]="faShoppingBag"></fa-icon></a>
         <div class="search-box">

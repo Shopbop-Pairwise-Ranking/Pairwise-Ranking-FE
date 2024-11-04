@@ -1,9 +1,9 @@
 <div class="sign-up-container">
-    <div class="glass-effect">
-        <img src="assets/images/signup-background.jpg" alt="background image">
+    <div class="signup-wrapper">
+        <div class="glass-effect"></div>
         <div class="form-elements">
             <h1>Create An Account</h1>
-
+            <p class="info">Make sure to keep your account secure.</p>
             <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 
                 <label for="name">Name</label>
@@ -23,24 +23,29 @@
                 <div class="password-field">
                     <input id="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"
                         placeholder="Enter password" />
-                    <i (click)="togglePasswordVisibility()" class="toggle-icon">{{ showPassword ? '🙈' : '👁️' }}</i>
+                    <fa-icon (click)="togglePasswordVisibility()" class="toggle-icon" [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
                 </div>
-                <p class="password-info">Password must be 8 characters long.</p>
-                <div *ngIf="signUpForm.controls['password'].invalid && signUpForm.controls['password'].touched"
-                    class="error">
+                <div *ngIf="signUpForm.controls['password'].invalid && signUpForm.controls['password'].touched; else passwordInfo"
+                    class="error error-password">
                     Password must be at least 8 characters.
                 </div>
+                <ng-template #passwordInfo>
+                    <p class="password-info">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M7 0C5.61553 0 4.26216 0.410543 3.11101 1.17971C1.95987 1.94888 1.06266 3.04213 0.532846 4.32122C0.003033 5.6003 -0.13559 7.00777 0.134506 8.36563C0.404603 9.7235 1.07129 10.9708 2.05026 11.9497C3.02922 12.9287 4.2765 13.5954 5.63437 13.8655C6.99224 14.1356 8.3997 13.997 9.67879 13.4672C10.9579 12.9373 12.0511 12.0401 12.8203 10.889C13.5895 9.73785 14 8.38447 14 7C14 5.14349 13.2625 3.36301 11.9497 2.05025C10.637 0.737498 8.85652 0 7 0ZM7 12.8333C5.84628 12.8333 4.71846 12.4912 3.75918 11.8502C2.79989 11.2093 2.05222 10.2982 1.61071 9.23232C1.16919 8.16642 1.05368 6.99353 1.27876 5.86197C1.50384 4.73042 2.05941 3.69102 2.87521 2.87521C3.69102 2.0594 4.73042 1.50383 5.86198 1.27875C6.99353 1.05367 8.16642 1.16919 9.23232 1.6107C10.2982 2.05221 11.2093 2.79989 11.8502 3.75917C12.4912 4.71846 12.8333 5.84628 12.8333 7C12.8333 8.5471 12.2188 10.0308 11.1248 11.1248C10.0308 12.2188 8.5471 12.8333 7 12.8333Z" fill="black"/>
+                            <path d="M7.00028 5.65832C6.84557 5.65832 6.69719 5.71977 6.5878 5.82917C6.4784 5.93857 6.41694 6.08694 6.41694 6.24165V10.2083C6.41694 10.363 6.4784 10.5114 6.5878 10.6208C6.69719 10.7302 6.84557 10.7916 7.00028 10.7916C7.15499 10.7916 7.30336 10.7302 7.41276 10.6208C7.52215 10.5114 7.58361 10.363 7.58361 10.2083V6.24165C7.58361 6.08694 7.52215 5.93857 7.41276 5.82917C7.30336 5.71977 7.15499 5.65832 7.00028 5.65832ZM7.00028 3.26665C6.84236 3.27259 6.69271 3.33876 6.58206 3.45158C6.4714 3.56441 6.40815 3.71531 6.40528 3.87332V3.96665C6.405 4.04276 6.42057 4.11809 6.451 4.18785C6.48143 4.25762 6.52604 4.32028 6.58201 4.37186C6.63798 4.42344 6.70407 4.4628 6.77608 4.48744C6.84809 4.51208 6.92444 4.52146 7.00028 4.51498C7.15314 4.50921 7.29818 4.4459 7.40635 4.33773C7.51452 4.22956 7.57784 4.08452 7.58361 3.93165V3.79165C7.58407 3.71751 7.56882 3.64411 7.53887 3.57629C7.50891 3.50847 7.46494 3.44777 7.40983 3.39817C7.35472 3.34857 7.28973 3.31121 7.21914 3.28854C7.14855 3.26587 7.07396 3.25841 7.00028 3.26665Z" fill="black"/>
+                        </svg>
+                        Password must be 8 characters long.</p>
+                </ng-template>
 
                 <label for="confirmPassword">Confirm Password</label>
                 <div class="password-field">
                     <input id="confirmPassword" formControlName="confirmPassword"
                         [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Re-enter password" />
-                    <i (click)="toggleConfirmPasswordVisibility()" class="toggle-icon">{{ showConfirmPassword ? '🙈' :
-                        '👁️'
-                        }}</i>
+                    <fa-icon (click)="toggleConfirmPasswordVisibility()" class="toggle-icon" [icon]="showConfirmPassword ? faEye : faEyeSlash"></fa-icon>
                 </div>
                 <div *ngIf="signUpForm.controls['confirmPassword'].invalid && signUpForm.controls['confirmPassword'].touched"
-                    class="error">
+                    class="error error-confirm-password">
                     Passwords must match.
                 </div>
 
@@ -49,8 +54,9 @@
                     <label for="terms">By registering, I agree to the <a href="#">terms and conditions</a></label>
                 </div>
 
-
-                <button type="submit" [disabled]="signUpForm.invalid">Create Account</button>
+                <div class="button-wrapper">
+                    <button type="submit" [disabled]="signUpForm.invalid">Create Account</button>
+                </div>
             </form>
 
 

@@ -4,12 +4,22 @@ import { CategoryGenderComponent } from './pages/category-gender/category-gender
 import { CategoryClothingComponent } from './pages/category-clothing/category-clothing.component';
 import { ProductRankingComponent } from './pages/product-ranking/product-ranking.component';
 import { SignUpComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
     {
         path: '',
         redirectTo: 'ranking',
         pathMatch: 'full'
+    },
+    {
+        path: 'signup',
+        component: SignUpComponent,
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
     },
     {
         path: 'ranking',
@@ -19,11 +29,8 @@ export const routes: Routes = [
                 component: HomeComponent,
             },
             {
-                path: 'signup',
-                component: SignUpComponent,
-            },
-            {
                 path: 'category',
+                canActivate: [authGuard],
                 children: [
                     {
                         path: '',
