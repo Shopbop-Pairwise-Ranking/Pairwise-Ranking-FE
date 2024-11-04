@@ -1,0 +1,138 @@
+.sign-up-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 10vh;
+    padding-top: 2.5rem;
+}
+
+.glass-effect {
+    position: 'relative';
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(153deg, rgba(255, 255, 255, 0.3) -65.62%, rgba(255, 255, 255, 0.1) 83.28%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+    backdrop-filter: blur(15px); // Apply blur effect from Figma
+    -webkit-backdrop-filter: blur(15px); // Safari support
+    border: 1px solid rgba(255, 255, 255, 0.3); // Border for glass effect
+    text-align: center;
+    z-index: 1;
+    justify-content: center;
+    display: flex;
+    height: 90%;
+
+    img {
+        width: 80%;
+        object-fit: cover;
+    }
+
+}
+
+
+
+h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+p {
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+
+    label {
+        font-weight: bold;
+        text-align: left;
+        margin-bottom: 0.2rem;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.8); // Light background for input fields
+        color: #333;
+    }
+
+    .password-field {
+        position: relative;
+
+        .toggle-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #888;
+        }
+    }
+
+    .password-info {
+        font-size: 0.85rem;
+        color: #888;
+        text-align: left;
+    }
+
+    .terms {
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        text-align: left;
+
+        input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    }
+
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.error {
+    font-size: 0.85rem;
+    color: #d9534f;
+    text-align: left;
+}
+
+.login-link {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+}

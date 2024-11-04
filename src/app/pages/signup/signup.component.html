@@ -1,0 +1,60 @@
+<div class="sign-up-container">
+    <div class="glass-effect">
+        <img src="assets/images/signup-background.jpg" alt="background image">
+        <div class="form-elements">
+            <h1>Create An Account</h1>
+
+            <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+                <label for="name">Name</label>
+                <input id="name" formControlName="name" type="text" placeholder="Enter your first and last name" />
+                <div *ngIf="signUpForm.controls['name'].invalid && signUpForm.controls['name'].touched" class="error">
+                    Name is required.
+                </div>
+
+                <label for="email">Email Address</label>
+                <input id="email" formControlName="email" type="email" placeholder="Enter your email address" />
+                <div *ngIf="signUpForm.controls['email'].invalid && signUpForm.controls['email'].touched" class="error">
+                    Enter a valid email address.
+                </div>
+
+
+                <label for="password">Password</label>
+                <div class="password-field">
+                    <input id="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"
+                        placeholder="Enter password" />
+                    <i (click)="togglePasswordVisibility()" class="toggle-icon">{{ showPassword ? '🙈' : '👁️' }}</i>
+                </div>
+                <p class="password-info">Password must be 8 characters long.</p>
+                <div *ngIf="signUpForm.controls['password'].invalid && signUpForm.controls['password'].touched"
+                    class="error">
+                    Password must be at least 8 characters.
+                </div>
+
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="password-field">
+                    <input id="confirmPassword" formControlName="confirmPassword"
+                        [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Re-enter password" />
+                    <i (click)="toggleConfirmPasswordVisibility()" class="toggle-icon">{{ showConfirmPassword ? '🙈' :
+                        '👁️'
+                        }}</i>
+                </div>
+                <div *ngIf="signUpForm.controls['confirmPassword'].invalid && signUpForm.controls['confirmPassword'].touched"
+                    class="error">
+                    Passwords must match.
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" formControlName="terms" id="terms" />
+                    <label for="terms">By registering, I agree to the <a href="#">terms and conditions</a></label>
+                </div>
+
+
+                <button type="submit" [disabled]="signUpForm.invalid">Create Account</button>
+            </form>
+
+
+            <p class="login-link">Already have an account? <a href="/login">Sign in here</a></p>
+        </div>
+    </div>
+</div>
