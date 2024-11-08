@@ -1,0 +1,59 @@
+<div class="trending-page">
+    <!-- Sidebar for Category Selection -->
+    <aside class="sidebar">
+      <h3 class="sidebar-title">Trending Clothes</h3>
+      <ul>
+        <!-- Now Trending option as a default view -->
+        <li>
+          <span (click)="selectGender('Now Trending')" [class.active]="selectedGender === 'Now Trending'">
+            Now Trending
+          </span>
+        </li>
+        <li>
+          <span (click)="selectGender('Women')" [class.active]="selectedGender === 'Women'">
+            Women
+          </span>
+          <ul *ngIf="selectedGender === 'Women'">
+            <li><span (click)="selectCategory('Dress')">Dress</span></li>
+            <li><span (click)="selectCategory('Jacket')">Jacket</span></li>
+            <li><span (click)="selectCategory('Jeans')">Jeans</span></li>
+            <li><span (click)="selectCategory('Swimsuits')">Swimsuits</span></li>
+          </ul>
+        </li>
+        <li>
+          <span (click)="selectGender('Men')" [class.active]="selectedGender === 'Men'">
+            Men
+          </span>
+          <ul *ngIf="selectedGender === 'Men'">
+            <li><span (click)="selectCategory('Jacket')">Jacket</span></li>
+            <li><span (click)="selectCategory('Pants')">Pants</span></li>
+            <li><span (click)="selectCategory('Swimsuits')">Swimsuits</span></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+  
+    <!-- Main Content Section for Product Display -->
+    <section class="main-content">
+      <!-- Static Heading for all views -->
+      <div class="header">
+        <h3>Trending Clothes</h3>
+        <select class="sort-dropdown">
+          <option value="popular">Sort By: Most Popular</option>
+          <option value="newest">Sort By: Least Popular</option>
+        </select>
+      </div>
+  
+      <!-- Product List Section -->
+      <div class="product-list">
+        <div *ngFor="let item of trendingItems" class="product-item">
+          <div class="rank-circle">{{ item.rank }}</div>
+          <img [src]="item.image" [alt]="item.name" class="product-image" />
+          <div class="product-details">
+            <div class="brand">{{ item.brand }}</div>
+            <div class="name">{{ item.name }}</div>
+            <div class="price">{{ item.price | currency }}</div>
+          </div>
+        </div>
+      </div>
+      

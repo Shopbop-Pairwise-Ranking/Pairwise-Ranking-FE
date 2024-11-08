@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://api.shopbop.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
+
+

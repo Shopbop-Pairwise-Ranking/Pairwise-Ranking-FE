@@ -1,0 +1,15 @@
+.ranking {
+    background-color: #C9404C;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+
+    p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+}

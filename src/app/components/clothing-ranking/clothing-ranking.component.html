@@ -1,0 +1,24 @@
+<div class="clothing-ranking">
+  <div *ngIf="currentPair.length > 0" class="comparison-container">
+    <div class="item" (click)="selectOption(currentPair[0])">
+      <img [src]="currentPair[0].images[0].src" alt="{{ currentPair[0].shortDescription }}">
+      <p>{{ currentPair[0].designerName }}</p>
+    </div>
+    <p class="or-text">OR</p>
+    <div class="item" (click)="selectOption(currentPair[1])">
+      <img [src]="currentPair[1].images[0].src" alt="{{ currentPair[1].shortDescription }}">
+      <p>{{ currentPair[1].designerName }}</p>
+    </div>
+  </div>
+  <div *ngIf="currentPair.length === 0">
+    <p>No more pairs to compare. Thanks for participating!</p>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <p>{{ 10 - comparisonsLeft }} of 10</p>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="((10 - comparisonsLeft) / 10) * 100"></div>
+    </div>
+  </div>
+</div>

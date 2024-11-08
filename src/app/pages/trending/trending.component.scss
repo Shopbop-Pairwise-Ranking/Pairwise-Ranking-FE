@@ -1,0 +1,145 @@
+.trending-page {
+  display: flex;
+  padding: 20px;
+  font-family: "GTAmerica", "Helvetica Neue", Helvetica, sans-serif;
+  color: black;
+}
+
+// Sidebar styling
+.sidebar {
+  width: 200px;
+  margin-right: 20px;
+  font-size: 14px;
+
+  .sidebar-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+
+      span {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .active {
+        color: black;
+      }
+
+      ul {
+        margin-left: 15px;
+        margin-top: 5px;
+
+        li {
+          font-weight: normal;
+          color: #555;
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+}
+
+// Main content styling
+.main-content {
+  flex-grow: 1;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h3 {
+      font-size: 20px;
+      font-weight: bold;
+      color: black;
+      margin: 0;
+    }
+
+    .sort-dropdown {
+      font-size: 14px;
+      padding: 5px;
+    }
+  }
+
+  // Product grid layout
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+
+    .product-item {
+      position: relative;
+      text-align: center;
+      font-size: 14px;
+      padding-top: 35px; // For rank circle positioning
+
+      .product-image {
+        width: 100%;
+        max-width: 160px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+      }
+
+      .rank-circle {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: yellow;
+        color: black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .product-details {
+        .brand {
+          font-weight: bold;
+          color: #333;
+          font-size: 13px;
+        }
+
+        .name {
+          font-size: 13px;
+          color: #555;
+          margin: 5px 0;
+        }
+
+        .price {
+          font-size: 14px;
+          font-weight: bold;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+// Style adjustments for alignment and font
+body {
+  font-size: 14px;
+  line-height: 26px;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}

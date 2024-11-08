@@ -1,17 +1,28 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common'; 
+interface Product {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+}
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CommonModule], 
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
   constructor(private router: Router) {}
 
   navigateToGenderSelection() {
-    this.router.navigate(['/ranking/category']);
+    this.router.navigate(['/gender-selection']);
+  }
+
+  navigateToTrending() {
+    this.router.navigate(['/trending']);
   }
 }

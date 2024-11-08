@@ -1,0 +1,16 @@
+<div class="ranking">
+    <h2>Rank {{ category }} for {{ gender }}</h2>
+    <div *ngIf="currentPair">
+      <div class="item" (click)="selectItem(0)">
+        <img [src]="currentPair[0].imageUrl" alt="Item 1">
+        <p>{{ currentPair[0].name }}</p>
+      </div>
+      <div class="item" (click)="selectItem(1)">
+        <img [src]="currentPair[1].imageUrl" alt="Item 2">
+        <p>{{ currentPair[1].name }}</p>
+      </div>
+      <button (click)="skip()">Not Interested</button>
+    </div>
+    <p *ngIf="!currentPair">Ranking complete! Thanks for your feedback.</p>
+  </div>
+  
