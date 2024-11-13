@@ -1,93 +1,187 @@
+/* Desktop Styles */
 .ranking-bg {
     background-color: #C9404C;
     height: 700px;
-  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-bg {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 90%;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.product-container-desktop {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+}
+
+.glass-card-desktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 82%;
+    width: 30%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+}
+
+.glass-card-desktop img {
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-text {
+    flex: 1;
+    text-align: center;
+    color: white;
+    max-width: 250px;
+}
+
+.card-text .or-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+.card-text .or-text::before,
+.card-text .or-text::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 80px;
+    height: 2px;
+    background-color: white;
+}
+
+.card-text .or-text::before {
+    left: -90px;
+}
+
+.card-text .or-text::after {
+    right: -90px;
+}
+
+.card-text p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.card-text .ranking-btn {
+    background-color: #47BA3A;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card-text .ranking-btn:hover {
+    background-color: #3D9D32;
+}
+
+/* Hide mobile version on desktop */
+.product-container-mobile,
+.card-text-mobile {
+    display: none;
+}
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .ranking-bg {
+        padding: 20px;
+        height: auto;
+    }
+
     .image-bg {
-      position: relative;
-      justify-content: center;
-      display: flex;
-      height: 90%;
-  
-      img {
-        width: 80%;
-        object-fit: cover;
-      }
-  
-      .product-container {
-        position: absolute;
-        display: flex;
-        justify-content: space-around;
+        flex-direction: column;
         align-items: center;
-        width: 70%;
-        height: 100%;
-      }
-  
-      .glass-card {
-        display: flex;
         justify-content: center;
+    }
+
+    /* Hide desktop version on mobile */
+    .product-container-desktop,
+    .card-text {
+        display: none;
+    }
+
+    /* Show only on mobile */
+    .product-container-mobile {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        height: 82%;
+        width: 125%;
+        max-width: 500px;
+        margin-bottom: 10px;
+    }
+
+    .glass-card-mobile {
+        width: 45%;
+        height: auto;
+        margin: 0 5px;
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         backdrop-filter: blur(10px);
-        padding: 30px;
-        
-        img {
-          border: 2px solid rgba(0, 255, 0, 0.3);
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-  
-      .card-text {
-        flex: 1;
+        padding: 10px;
+    }
+
+    .glass-card-mobile img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .card-text-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
         color: white;
-  
-        .or-text {
-          font-family: "Cormorant Garamond", serif;
-          font-size: 38px;
-          font-weight: bold;
-          margin-bottom: 10px;
-          position: relative;
-          color: white;
-          text-align: center;
-  
-          &::before,
-          &::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 80px;
-            height: 2px;
-            background-color: white;
-          }
-  
-          &::before { left: -90px; }
-          &::after { right: -90px; }
-        }
-  
-        p {
-          font-size: 18px;
-          margin-bottom: 20px;
-        }
-  
-        .ranking-btn {
-          background-color: #47BA3A;
-          color: white;
-          padding: 10px 20px;
-          border: none;
-          font-size: 16px;
-          cursor: pointer;
-          
-          &:hover {
-            background-color: #3D9D32;
-          }
-        }
-      }
+        margin: 0 5px; 
     }
-  }
-  
-  
+
+    .card-text-mobile .or-text {
+        font-size: 0.5rem;
+        margin: 10px 0;
+    }
+
+    .card-text-mobile p {
+        font-size: 0.5rem;
+        margin-bottom: 5px;
+    }
+
+    .card-text-mobile .ranking-btn {
+        font-size: 0.5rem;
+        padding: 5px 10px;
+        margin-top: 15px;
+        background-color: #47BA3A;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .card-text-mobile .ranking-btn:hover {
+        background-color: #3D9D32;
+    }
+}
