@@ -18,25 +18,32 @@ export class AuthService {
   );
 
   login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${environment.apiBaseUrl}/login`, credentials).pipe(
+    return this.http.post(`${environment.apiBaseUrl}/api/login`, credentials).pipe(
       tap((response: any) => {
         if (response.token) {
           this.authToken.next(response.token);
+          localStorage.setItem('token', response.token);
         }
       })
     );
   }
 
   signup(data: any): Observable<any> {
-    return this.http.post(`${environment.apiBaseUrl}/signup`, data);
+    return this.http.post(`${environment.apiBaseUrl}/api/signup`, data);
   }
 
   logout(): void {
     this.authToken.next(null);
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 
   isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authToken.next(token);
+    }
+
     return this.authToken.value !== null;
   }
 
