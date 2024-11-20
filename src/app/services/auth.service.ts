@@ -12,6 +12,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private authToken = new BehaviorSubject<string | null>(null);
+  private userId = new BehaviorSubject<string | null>(null);
 
   isAuthenticated$ = this.authToken.asObservable().pipe(
     map(token => token !== null)
@@ -20,9 +21,11 @@ export class AuthService {
   login(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post(`${environment.apiBaseUrl}/api/login`, credentials).pipe(
       tap((response: any) => {
-        if (response.token) {
+        if (response.token && response.userId) {
           this.authToken.next(response.token);
+          this.userId.next(response.userId);
           localStorage.setItem('token', response.token);
+          localStorage.setItem('userId', response.userId);
         }
       })
     );
@@ -40,8 +43,10 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
     if (token) {
       this.authToken.next(token);
+      this.userId.next(userId);
     }
 
     return this.authToken.value !== null;
@@ -49,5 +54,9 @@ export class AuthService {
 
   getToken(): string | null {
     return this.authToken.value;
+  }
+
+  getUserId(): string | null {
+    return this.userId.value;
   }
 }

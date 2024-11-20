@@ -6,6 +6,7 @@ import { RankCardComponent } from '../../components/rank-card/rank-card.componen
 import { BannerTopComponent } from '../../components/banner-top/banner-top.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../../services/auth.service';
 
 interface Product {
   productSin: string;
@@ -32,10 +33,11 @@ export class ProductRankingComponent implements OnInit {
   @Input() product!: string;
   @Input() gender!: string;
   private productRankingService = inject(ProductRankingService);
+  private authService = inject(AuthService);
   rounds: any = {};
   currentRound = 1;
   productsToShow: Product[] = [];
-  userId: string = 'user123';
+  userId: string = '';
 
   ratings: Rating[] = [];
   isLoading: boolean = true;
@@ -48,6 +50,9 @@ export class ProductRankingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.userId) {
+      this.userId = this.authService.getUserId() || '';
+    }
     this.fetchProducts(this.userId, this.product, this.gender);
   }
 
