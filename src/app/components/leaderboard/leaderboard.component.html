@@ -1,0 +1,18 @@
+<div class="leaderboard-bg">
+    <h2>Your Recommendations</h2>
+    <p>According to your selection, users with similar preferences also liked:</p>
+  
+    <div class="leaderboard-container">
+      <div *ngFor="let item of recommendations" class="leaderboard-item">
+        <div class="rank-badge">{{ item.rank }}</div>
+        <img [src]="item.images[0].src" [alt]="item.shortDescription" />
+        <div class="item-details">
+          <h3>{{ item.shortDescription }}</h3>
+          <p>{{ item.designerName }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <button class="back-button" (click)="goBack()">Go Back</button>
+  </div>
+  

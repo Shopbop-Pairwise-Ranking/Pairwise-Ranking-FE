@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 interface Product {
@@ -18,12 +18,12 @@ interface Product {
   styleUrls: ['./clothing-ranking.component.scss'],
 })
 export class ClothingRankingComponent implements OnInit {
-  products: Product[] = []; // Placeholder for fetched products
-  currentPair: Product[] = []; // Pair of products to be compared
+  products: Product[] = []; // List of fetched products
+  currentPair: Product[] = []; // Current pair of products being compared
   comparisonsLeft: number = 10; // Number of comparisons left
   index: number = 0;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.initializeProducts();
@@ -45,24 +45,50 @@ export class ClothingRankingComponent implements OnInit {
         designerName: 'Designer 2',
         images: [{ src: 'assets/images/product2.jpg' }],
       },
-      // Add more products as needed
+      {
+        productSin: '3',
+        productCode: 'CODE3',
+        shortDescription: 'Chic Top',
+        designerName: 'Designer 3',
+        images: [{ src: 'assets/images/Dress1.jpg' }],
+      },
+      {
+        productSin: '4',
+        productCode: 'CODE4',
+        shortDescription: 'Casual Pants',
+        designerName: 'Designer 4',
+        images: [{ src: 'assets/images/Dress2.jpg' }],
+      },
+      {
+        productSin: '5',
+        productCode: 'CODE5',
+        shortDescription: 'Trendy Skirt',
+        designerName: 'Designer 5',
+        images: [{ src: 'assets/images/Dress3.jpg' }],
+      },
     ];
 
     this.setupComparison();
   }
 
   setupComparison(): void {
-    this.products = this.shuffle(this.products).slice(0, 30);
+    this.products = this.shuffle(this.products); // Shuffle products
     this.loadNextPair();
   }
 
   loadNextPair(): void {
-    if (this.index < this.products.length - 1 && this.comparisonsLeft > 0) {
+    if (this.comparisonsLeft > 0) {
+      // If the index exceeds the available product pairs, reshuffle the products
+      if (this.index >= this.products.length - 1) {
+        this.index = 0; // Reset index
+        this.products = this.shuffle(this.products); // Reshuffle products
+      }
+
+      // Load the next pair of products
       this.currentPair = [this.products[this.index], this.products[this.index + 1]];
-      this.index += 2;
+      this.index += 2; // Increment index by 2
     } else {
-      this.currentPair = [];
-      console.log('Comparison completed!');
+      this.completeRanking(); // Complete the ranking process
     }
   }
 
@@ -71,18 +97,53 @@ export class ClothingRankingComponent implements OnInit {
   }
 
   selectOption(selectedProduct: Product): void {
-    this.comparisonsLeft--;
-    if (this.comparisonsLeft > 0) {
-      this.loadNextPair();
-    } else {
-      console.log('All comparisons completed!');
-    }
+    this.comparisonsLeft--; // Decrement comparisons left
+    this.loadNextPair(); // Load the next pair
   }
 
   skipPair(): void {
-    if (this.comparisonsLeft > 0) {
-      this.loadNextPair();
-    }
+    this.loadNextPair(); // Skip to the next pair
+  }
+
+  completeRanking(): void {
+    const recommendations = [
+      {
+        productCode: 'CODE1',
+        shortDescription: 'Elegant Dress',
+        designerName: 'Designer 1',
+        images: [{ src: 'assets/images/Dress1.jpg' }],
+        rank: 1,
+      },
+      {
+        productCode: 'CODE2',
+        shortDescription: 'Stylish Jacket',
+        designerName: 'Designer 2',
+        images: [{ src: 'assets/images/Dress2.jpg' }],
+        rank: 2,
+      },
+      {
+        productCode: 'CODE3',
+        shortDescription: 'Chic Top',
+        designerName: 'Designer 3',
+        images: [{ src: 'assets/images/Dress3.jpg' }],
+        rank: 3,
+      },
+      {
+        productCode: 'CODE4',
+        shortDescription: 'Casual Pants',
+        designerName: 'Designer 4',
+        images: [{ src: 'assets/images/Jacket1.jpg' }],
+        rank: 4,
+      },
+      {
+        productCode: 'CODE5',
+        shortDescription: 'Trendy Skirt',
+        designerName: 'Designer 5',
+        images: [{ src: 'assets/images/Jacket2.jpg' }],
+        rank: 5,
+      },
+    ];
+    console.log('Navigating to leaderboard with:', recommendations);
+    this.router.navigate(['/leaderboard'], { state: { recommendations } });
   }
 }
-
