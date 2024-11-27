@@ -4,13 +4,14 @@
   <div class="left-section">
     <ng-container *ngIf="hasRatings(); else instructionBox">
       <h2>Your Top 10 Favorites</h2>
+      <p *ngIf="timestamp">Based on your last ranking on {{timestamp | date: 'mediumDate'}}</p>
       <ng-container *ngFor="let ranking of rankings; index as i">
         <app-rank-card
           [imageSrc]="ranking.imageURL"
           [altText]="ranking.shortDescription"
           [brand]="ranking.designerName"
           [name]="ranking.shortDescription"
-          [price]="ranking.price"
+          [price]="'$' + ranking.price"
           [rank]="i + 1"
         ></app-rank-card>
       </ng-container>
@@ -25,7 +26,6 @@
         <p>You'll get your list of ranked items at the end.</p>
         <h3>Happy Ranking</h3>
       </div>
-      <button class="pass-button" (click)="onPassClick()">Pass</button>
     </ng-template>
   </div>
 
@@ -64,6 +64,8 @@
       <p>Based on your ranking your recommendations will be available soon.</p>
 
        <fa-icon [icon]="['fas', 'clock']" class="coming-soon-icon"></fa-icon>
+
+       <button class="secondary-btn" (click)="onRetryClick()">Retry</button>
     </div>
 
     <div class="no-products" *ngIf="!isLoading && productsToShow.length === 0 && !isCompleted">
