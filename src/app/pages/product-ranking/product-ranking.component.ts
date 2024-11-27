@@ -82,6 +82,8 @@ export class ProductRankingComponent implements OnInit, OnDestroy {
             this.submittedRankingId = response.latestRankingId;
             if (!response.recommendations.length) {
               this.fetchRecommendations();
+            } else {
+              this.recommendations = response.recommendations;
             }
           } else {
             this.fetchProducts();
@@ -189,6 +191,7 @@ export class ProductRankingComponent implements OnInit, OnDestroy {
       .subscribe((recommendationResponse) => {
         this.isLoading = false;
         if (recommendationResponse) {
+          // gets recommendations - TODO
           this.recommendations = recommendationResponse;
         }
       });
