@@ -13,11 +13,11 @@ import { BannerTopComponent } from "../../components/banner-top/banner-top.compo
 export class CategoryGenderComponent {
   constructor(private router: Router) {}
   onWomanClick() {
-    this.router.navigate(['/ranking/category/clothing/women']);
+    this.router.navigate(['/ranking/category/clothing/womens']);
   }
 
   onManClick() {
-    this.router.navigate(['/ranking/category/clothing/men']);
+    this.router.navigate(['/ranking/category/clothing/mens']);
   }
 
 }

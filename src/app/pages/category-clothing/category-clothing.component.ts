@@ -68,7 +68,7 @@ export class CategoryClothingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categories = this.gender.toString().toLowerCase() == 'women' ? this.categories_women : this.categories_men;
+    this.categories = this.gender.toString().toLowerCase() == 'womens' ? this.categories_women : this.categories_men;
   }
 
 

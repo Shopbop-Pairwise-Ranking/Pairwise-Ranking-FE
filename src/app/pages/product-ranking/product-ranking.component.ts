@@ -11,15 +11,23 @@ import { AuthService } from '../../services/auth.service';
 interface Product {
   productSin: string;
   shortDescription: string;
-  name: string;
+  designerName: string;
   price: string;
-  imageUrl: string;
+  imageURL: string;
 }
+
+type ProductSinMap = { [key: string]: number };
 
 interface Rating {
   sin: string;
-  rating: number;
+  rank: number;
   product: Product;
+}
+
+interface Matchups {
+  itemA: string;
+  itemB: string;
+  winner: string;
 }
 
 @Component({
@@ -38,10 +46,12 @@ export class ProductRankingComponent implements OnInit {
   currentRound = 1;
   productsToShow: Product[] = [];
   userId: string = '';
+  matchups: Matchups[] = [];
 
-  ratings: Rating[] = [];
+  rankings: Product[] = [];
   isLoading: boolean = true;
   isCompleted: boolean = false;
+  submittedRankingId: string = '';
 
   private iconLibrary = inject(FaIconLibrary);
 
@@ -77,47 +87,55 @@ export class ProductRankingComponent implements OnInit {
 
   onProductClick(selectedProduct: Product) {
     const [productA, productB] = this.productsToShow;
-    const payload = {
-      userId: this.userId,
-      categoryId: this.product,
+    const winner = (productA.productSin === selectedProduct.productSin) ? productA : productB;
+    const looser = (productA.productSin !== selectedProduct.productSin) ? productA : productB;
+    this.matchups.push({
       itemA: productA.productSin,
       itemB: productB.productSin,
-      winner: selectedProduct.productSin
-    };
+      winner: winner.productSin
+    });
+    this.updateRatings(winner, looser);
 
-    this.productRankingService.submitSelection(payload).subscribe(
-      (response) => {
-        this.updateRatings(response.updatedRatings, productA, productB);
+    if (this.currentRound < Object.keys(this.rounds).length) {
+      this.currentRound++;
+      this.updateRound();
+    } else {
+      this.isCompleted = true;
+    }
 
-        if (this.currentRound < Object.keys(this.rounds).length) {
-          this.currentRound++;
-          this.updateRound();
-        } else {
-          this.isCompleted = true;
-        }
-      },
-      (error) => {
-        console.error('Error submitting selection:', error);
+    if (this.isCompleted) {
+      const payload = {
+        matchups: this.matchups,
+        rankings: this.rankings.reduce((acc, item, index) => {
+          const key = item.productSin;
+          acc[key] = index + 1;
+          return acc;
+        }, {} as ProductSinMap)
       }
-    );
+      this.isLoading = true;
+      this.productRankingService.submitRankings(payload, this.userId, this.product).subscribe(
+        (response) => {
+          this.isLoading = false;
+          if (response?.rankingId) {
+            this.submittedRankingId = response.rankingId;
+            console.log(this.submittedRankingId);
+          }
+        },
+        (error) => {
+          console.error('Error submitting product ranking:', error);
+          this.isLoading = false;
+        }
+      )
+    }
   }
 
-  updateRatings(response: any, productA: Product, productB: Product) {
-    const existingA = this.ratings.find(r => r.sin === productA.productSin);
-    if (existingA) {
-      existingA.rating = response[productA.productSin];
+  updateRatings(winner: Product, looser: Product) {
+    if (this.rankings.length) {
+      const middleIndex = Math.floor(this.rankings.length / 2);
+      this.rankings.splice(middleIndex, 0, ...[winner, looser]);
     } else {
-      this.ratings.push({ sin: productA.productSin, rating: response[productA.productSin], product: productA });
+      this.rankings = [winner, looser];
     }
-
-    const existingB = this.ratings.find(r => r.sin === productB.productSin);
-    if (existingB) {
-      existingB.rating = response[productB.productSin];
-    } else {
-      this.ratings.push({ sin: productB.productSin, rating: response[productB.productSin], product: productB });
-    }
-
-    this.ratings.sort((a, b) => b.rating - a.rating);
   }
 
   onPassClick() {
@@ -130,6 +148,6 @@ export class ProductRankingComponent implements OnInit {
   }
 
   hasRatings(): boolean {
-    return this.ratings.length > 0;
+    return this.rankings.length > 0;
   }
 }

@@ -4,13 +4,13 @@
   <div class="left-section">
     <ng-container *ngIf="hasRatings(); else instructionBox">
       <h2>Your Top 10 Favorites</h2>
-      <ng-container *ngFor="let rating of ratings; index as i">
+      <ng-container *ngFor="let ranking of rankings; index as i">
         <app-rank-card
-          [imageSrc]="rating.product.imageUrl"
-          [altText]="rating.product.shortDescription"
-          [brand]="rating.product.name"
-          [name]="rating.product.shortDescription"
-          [price]="rating.product.price"
+          [imageSrc]="ranking.imageURL"
+          [altText]="ranking.shortDescription"
+          [brand]="ranking.designerName"
+          [name]="ranking.shortDescription"
+          [price]="ranking.price"
           [rank]="i + 1"
         ></app-rank-card>
       </ng-container>
@@ -39,22 +39,22 @@
 
     <div class="product-cards" *ngIf="!isLoading && !isCompleted && productsToShow.length === 2">
       <app-product-card
-        [imageSrc]="productsToShow[0].imageUrl"
+        [imageSrc]="productsToShow[0].imageURL"
         [altText]="productsToShow[0].shortDescription"
-        [brand]="productsToShow[0].name"
+        [brand]="productsToShow[0].designerName"
         [name]="productsToShow[0].shortDescription"
-        [price]="productsToShow[0].price"
+        [price]="'$' + productsToShow[0].price"
         (productClick)="onProductClick(productsToShow[0])"
       ></app-product-card>
 
       <div class="or-separator">OR</div>
 
       <app-product-card
-        [imageSrc]="productsToShow[1].imageUrl"
+        [imageSrc]="productsToShow[1].imageURL"
         [altText]="productsToShow[1].shortDescription"
-        [brand]="productsToShow[1].name"
+        [brand]="productsToShow[1].designerName"
         [name]="productsToShow[1].shortDescription"
-        [price]="productsToShow[1].price"
+        [price]="'$' + productsToShow[1].price"
         (productClick)="onProductClick(productsToShow[1])"
       ></app-product-card>
     </div>

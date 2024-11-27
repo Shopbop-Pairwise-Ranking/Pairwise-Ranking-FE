@@ -1,14 +1,14 @@
 <div class="rank-card">
 
     <div class="image-container">
-      <img [src]="imageSrc" [alt]="altText" class="product-image" />
+      <img [src]="'https://m.media-amazon.com/images/G/01/Shopbop/p' + imageSrc" [alt]="altText" class="product-image" />
     </div>
 
 
     <div class="product-details">
       <h4 class="brand">{{ brand }}</h4>
       <p class="name">{{ name }}</p>
-      <p class="price">{{ price }}</p>
+      <p class="price">${{ price }}</p>
 
 
       <div class="action-icons">

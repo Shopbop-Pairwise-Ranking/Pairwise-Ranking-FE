@@ -18,8 +18,8 @@ export class ProductRankingService {
     });
   }
 
-  submitSelection(payload: any): Observable<any> {
-    return this.http.post(`${environment.apiBaseUrl}/submitComparison`, payload);
+  submitRankings(payload: any, userId: string, categoryId: string): Observable<any> {
+    return this.http.post(`${environment.apiBaseUrl}/api/update-ranking/user/${userId}/category/${categoryId}`, payload);
   }
 
 }

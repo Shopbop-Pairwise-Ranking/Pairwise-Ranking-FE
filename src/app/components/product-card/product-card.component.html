@@ -1,7 +1,7 @@
 <div class="product-card" (click)="onProductClick()">
 
     <div class="image-container">
-      <img [src]="imageSrc" [alt]="altText" class="product-image" />
+      <img [src]="'https://m.media-amazon.com/images/G/01/Shopbop/p' + imageSrc" [alt]="altText" class="product-image" />
       <button class="wishlist-button" (click)="onWishlistClick(); $event.stopPropagation();">
         <fa-icon class="fa-heart" [icon]="faHeart"></fa-icon>
       </button>
