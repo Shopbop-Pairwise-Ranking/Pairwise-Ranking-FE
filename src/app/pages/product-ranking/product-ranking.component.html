@@ -5,23 +5,20 @@
     <ng-container *ngIf="hasRatings(); else instructionBox">
       <h2>Your Top 10 Favorites</h2>
       <p *ngIf="timestamp">Based on your last ranking on {{timestamp | date: 'mediumDate'}}</p>
-      <ng-container *ngFor="let ranking of rankings; index as i">
-        <app-rank-card
-          [imageSrc]="ranking.imageURL"
-          [altText]="ranking.shortDescription"
-          [brand]="ranking.designerName"
-          [name]="ranking.shortDescription"
-          [price]="'$' + ranking.price"
-          [rank]="i + 1"
-        ></app-rank-card>
-      </ng-container>
+      <div class="ranks-wrapper">
+        <ng-container *ngFor="let ranking of rankings; index as i">
+          <app-rank-card [imageSrc]="ranking.imageURL" [altText]="ranking.shortDescription" [brand]="ranking.designerName"
+            [name]="ranking.shortDescription" [price]="'$' + ranking.price" [rank]="i + 1"></app-rank-card>
+        </ng-container>
+      </div>
     </ng-container>
 
     <ng-template #instructionBox>
       <h2>Welcome to Pairwise Ranking</h2>
       <div class="instruction-box">
         <p>To get started with <strong>click</strong> on one of the styles that you <strong>like the most.</strong></p>
-        <p>If none of the options suit your taste, feel free to <strong>pass</strong> and you will be presented with a new set of options.</p>
+        <p>If none of the options suit your taste, feel free to <strong>pass</strong> and you will be presented with a
+          new set of options.</p>
         <p>You'll be given <strong>10 sets</strong> of options from your chosen category.</p>
         <p>You'll get your list of ranked items at the end.</p>
         <h3>Happy Ranking</h3>
@@ -31,41 +28,48 @@
 
 
   <div class="right-section">
-    <h2 *ngIf="!isCompleted">Select your favorite clothing item</h2>
+    <h2 *ngIf="!isCompleted; else congratsMessage">Select your favorite clothing item</h2>
+    <ng-template #congratsMessage>
+      <h2 *ngIf="!isLoading">Yay! You have ranked your favorite items.</h2>
+    </ng-template>
 
 
     <div class="loader" *ngIf="isLoading"></div>
 
 
     <div class="product-cards" *ngIf="!isLoading && !isCompleted && productsToShow.length === 2">
-      <app-product-card
-        [imageSrc]="productsToShow[0].imageURL"
-        [altText]="productsToShow[0].shortDescription"
-        [brand]="productsToShow[0].designerName"
-        [name]="productsToShow[0].shortDescription"
-        [price]="'$' + productsToShow[0].price"
-        (productClick)="onProductClick(productsToShow[0])"
-      ></app-product-card>
+      <app-product-card [imageSrc]="productsToShow[0].imageURL" [altText]="productsToShow[0].shortDescription"
+        [brand]="productsToShow[0].designerName" [name]="productsToShow[0].shortDescription"
+        [price]="'$' + productsToShow[0].price" (productClick)="onProductClick(productsToShow[0])"></app-product-card>
 
       <div class="or-separator">OR</div>
 
-      <app-product-card
-        [imageSrc]="productsToShow[1].imageURL"
-        [altText]="productsToShow[1].shortDescription"
-        [brand]="productsToShow[1].designerName"
-        [name]="productsToShow[1].shortDescription"
-        [price]="'$' + productsToShow[1].price"
-        (productClick)="onProductClick(productsToShow[1])"
-      ></app-product-card>
+      <app-product-card [imageSrc]="productsToShow[1].imageURL" [altText]="productsToShow[1].shortDescription"
+        [brand]="productsToShow[1].designerName" [name]="productsToShow[1].shortDescription"
+        [price]="'$' + productsToShow[1].price" (productClick)="onProductClick(productsToShow[1])"></app-product-card>
     </div>
 
     <div class="completion-message" *ngIf="isCompleted">
-      <h2>Yay! You have ranked your favorite items.</h2>
-      <p>Based on your ranking your recommendations will be available soon.</p>
-
-       <fa-icon [icon]="['fas', 'clock']" class="coming-soon-icon"></fa-icon>
-
-       <button class="secondary-btn" (click)="onRetryClick()">Retry</button>
+      <ng-container *ngIf="!recommendations.length; else showRecommendations">
+        <p>Based on your ranking your recommendations will be available soon.</p>
+        <fa-icon [icon]="['fas', 'clock']" class="coming-soon-icon"></fa-icon>
+      </ng-container>
+      <ng-template #showRecommendations>
+        <div class="recommendations">
+          <p>Based on your ranking here are some recommendations you may like:</p>
+          <div class="recommendation-cards">
+            <ng-container *ngFor="let recommendation of recommendations; index as i">
+              <app-product-card [imageSrc]="recommendation.imageURL" [altText]="recommendation.shortDescription"
+                [brand]="recommendation.designerName" [name]="recommendation.shortDescription"
+                [price]="'$' + recommendation.price"></app-product-card>
+            </ng-container>
+          </div>
+        </div>
+      </ng-template>
+      <div class="retry">
+        <p *ngIf="recommendations.length">Not Interested? </p>
+        <button class="secondary-btn" (click)="onRetryClick()">Retry</button>
+      </div>
     </div>
 
     <div class="no-products" *ngIf="!isLoading && productsToShow.length === 0 && !isCompleted">

@@ -117,17 +117,14 @@ export class ProductRankingComponent implements OnInit, OnDestroy {
   fetchRecommendations() {
     this.recommendationDestroy$.next();
 
-    this.isLoading = true;
     this.productRankingService.fetchRecommendations(this.userId, this.product, this.submittedRankingId, true)
       .pipe(takeUntil(this.recommendationDestroy$))
       .subscribe(
         (response: Product[]) => {
           this.recommendations = response;
-          this.isLoading = false;
         },
         (error) => {
           console.error('Error fetching recommendations', error);
-          this.isLoading = false;
         }
       );
   }
@@ -171,7 +168,6 @@ export class ProductRankingComponent implements OnInit, OnDestroy {
 
     this.switchMapRecommendationDestroy$.next();
 
-    this.isLoading = true;
     this.productRankingService.submitRankings(payload, this.userId, this.product)
       .pipe(
         takeUntil(this.switchMapRecommendationDestroy$),
@@ -183,13 +179,11 @@ export class ProductRankingComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.switchMapRecommendationDestroy$));
         }),
         catchError(error => {
-          this.isLoading = false;
           console.error('Error submitting product ranking:', error);
           return of(null);
         })
       )
       .subscribe((recommendationResponse) => {
-        this.isLoading = false;
         if (recommendationResponse) {
           // gets recommendations - TODO
           this.recommendations = recommendationResponse;
