@@ -58,7 +58,7 @@
         <div class="recommendations">
           <p>Based on your ranking here are some recommendations you may like:</p>
           <div class="recommendation-cards">
-            <ng-container *ngFor="let recommendation of recommendations; index as i">
+            <ng-container *ngFor="let recommendation of recommendations.slice(0, 3); index as i">
               <app-product-card [imageSrc]="recommendation.imageURL" [altText]="recommendation.shortDescription"
                 [brand]="recommendation.designerName" [name]="recommendation.shortDescription"
                 [price]="'$' + recommendation.price"></app-product-card>

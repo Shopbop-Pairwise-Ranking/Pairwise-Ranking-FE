@@ -44,19 +44,12 @@
     </div>
 
     <div class="navbar-links">
-      <a href="#">What's New</a>
-      <a href="#">Sports</a>
-      <a href="#">Get Inspired</a>
-      <a href="#">Designers</a>
-      <a href="#">Clothing</a>
-      <a href="#">Dresses</a>
-      <a href="#">Shoes</a>
-      <a href="#">Bags</a>
-      <a href="#">Jewelry & Accessories</a>
-      <a href="#">Home & Gifts</a>
-      <a href="#">Men</a>
-      <a href="#">Beauty</a>
-      <a href="/trending" class="active">Trending</a>
+        <a
+          href="/ranking"
+          [class.active]="isActive('ranking')">Ranking</a>
+        <a
+          href="/trending"
+          [class.active]="isActive('trending')">Trending</a>
     </div>
   </nav>
 

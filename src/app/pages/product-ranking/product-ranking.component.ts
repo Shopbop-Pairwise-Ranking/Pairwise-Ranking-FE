@@ -206,7 +206,7 @@ export class ProductRankingComponent implements OnInit, OnDestroy {
     this.currentRound = 1;
     this.matchups = [];
     this.timestamp = undefined;
-
+    this.recommendations = [];
     this.recommendationDestroy$.next();
     this.switchMapRecommendationDestroy$.next();
 

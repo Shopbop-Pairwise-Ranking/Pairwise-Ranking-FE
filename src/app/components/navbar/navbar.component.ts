@@ -28,6 +28,10 @@ export class NavbarComponent {
     this.isAuthenticated$ = this.authService.isAuthenticated$;
   }
 
+  isActive(route: string): boolean {
+    return this.router.url.includes(route);
+  }
+
   onLogoClick() {
     this.router.navigate(['/']);
   }

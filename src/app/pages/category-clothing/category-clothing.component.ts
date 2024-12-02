@@ -42,22 +42,22 @@ export class CategoryClothingComponent implements OnInit {
 
   categories_men = [
     {
-      imageSrc: 'assets/images/jeans.jpg',
+      imageSrc: 'assets/images/man-jeans.jpg',
       altText: 'Image of a man wearing jeans.',
       buttonText: 'Jeans'
     },
     {
-      imageSrc: 'assets/images/tshirt.jpg',
+      imageSrc: 'assets/images/man-tshirt.jpg',
       altText: 'Image of a man wearing a t-shirt.',
       buttonText: 'T-Shirts'
     },
     {
-      imageSrc: 'assets/images/coat.jpg',
+      imageSrc: 'assets/images/man-coat.jpg',
       altText: 'Image of a man wearing a coat.',
       buttonText: 'Coats'
     },
     {
-      imageSrc: 'assets/images/shoes.jpg',
+      imageSrc: 'assets/images/man-shoes.jpg',
       altText: 'Image of men\'s shoes.',
       buttonText: 'Shoes'
     }
@@ -73,7 +73,9 @@ export class CategoryClothingComponent implements OnInit {
 
 
   onProductClick(product: string) {
-    this.router.navigate([`/ranking/category/clothing/${this.gender}/${product.toLocaleLowerCase()}`]);
+    if (this.gender.toString().toLowerCase() == 'womens') {
+      this.router.navigate([`/ranking/category/clothing/${this.gender}/${product.toLocaleLowerCase()}`]);
+    }
   }
 
 }
