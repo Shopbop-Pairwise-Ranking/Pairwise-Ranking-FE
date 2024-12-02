@@ -1,15 +1,19 @@
 <div class="product-card" (click)="onProductClick()">
-
-    <div class="image-container">
-      <img [src]="'https://m.media-amazon.com/images/G/01/Shopbop/p' + imageSrc" [alt]="altText" class="product-image" />
-      <button class="wishlist-button" (click)="onWishlistClick(); $event.stopPropagation();">
-        <fa-icon class="fa-heart" [icon]="faHeart"></fa-icon>
-      </button>
-    </div>
-
-    <div class="product-details">
-      <h3 class="brand">{{ brand }}</h3>
-      <p class="name">{{ name }}</p>
-      <p class="price">{{ price }}</p>
-    </div>
+  <!-- Rank Badge -->
+  <div *ngIf="rank" class="rank-badge">
+    {{ rank }}
   </div>
+
+  <div class="image-container">
+    <img [src]="'https://m.media-amazon.com/images/G/01/Shopbop/p' + imageSrc" [alt]="altText" class="product-image" />
+    <button class="wishlist-button" (click)="onWishlistClick(); $event.stopPropagation();">
+      <fa-icon class="fa-heart" [icon]="faHeart"></fa-icon>
+    </button>
+  </div>
+
+  <div class="product-details">
+    <h3 class="brand">{{ brand }}</h3>
+    <p class="name">{{ name }}</p>
+    <p class="price">{{ price }}</p>
+  </div>
+</div>

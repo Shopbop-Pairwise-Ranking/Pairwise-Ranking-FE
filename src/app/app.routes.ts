@@ -6,6 +6,7 @@ import { ProductRankingComponent } from './pages/product-ranking/product-ranking
 import { SignUpComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guard/auth.guard';
+import { TrendingComponent } from './pages/trending/trending.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +21,11 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+    },
+    {
+        path: 'trending',
+        component: TrendingComponent,
+        canActivate: [authGuard],
     },
     {
         path: 'ranking',

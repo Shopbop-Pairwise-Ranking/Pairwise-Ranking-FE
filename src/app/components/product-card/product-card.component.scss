@@ -7,6 +7,7 @@
   background-color: #f9eae8;
   overflow: hidden;
   cursor: pointer;
+  position: relative;
 
   .image-container {
     position: relative;
@@ -68,4 +69,23 @@
 
 .h3 {
   text-align: center;
+}
+
+/* Rank Badge Styles */
+.rank-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff6f61;
+  /* Circular background color */
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 2;
 }

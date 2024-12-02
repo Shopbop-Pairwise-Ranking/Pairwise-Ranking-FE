@@ -1,0 +1,51 @@
+<div class="container">
+  <!-- Tabs -->
+  <div class="tabs-container">
+    <div
+      *ngFor="let tab of tabs"
+      class="tab"
+      (click)="fetchTrendingProducts(tab.buttonText)"
+      [class.active]="tab.buttonText.toLocaleLowerCase() === selectedCategory.toLocaleLowerCase()">
+      {{ tab.buttonText }}
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Timestamp -->
+    <div class="timestamp">
+      <p>Last Updated: <span>{{ trendingTimestamp | date: 'MMM d, y, h:mm a' }}</span></p>
+    </div>
+
+    <!-- Product Layout -->
+    <div class="product-layout">
+      <!-- Top 3 Product Cards -->
+      <div class="product-grid">
+        <app-product-card
+          *ngFor="let product of trendingProducts.slice(0, 3)"
+          [imageSrc]="product.imageURL"
+          [altText]="product.shortDescription"
+          [brand]="product.designerName"
+          [name]="product.shortDescription"
+          [price]="'$' + product.price"
+          [rank]="product.rank"
+          class="large-card">
+        </app-product-card>
+      </div>
+
+      <!-- List Cards in the 4th Column -->
+      <div class="list-column">
+        <div *ngFor="let product of trendingProducts.slice(3)" class="list-card">
+          <div class="list-card-image">
+            <img [src]="'https://m.media-amazon.com/images/G/01/Shopbop/p' + product.imageURL" [alt]="product.shortDescription" />
+          </div>
+          <div class="list-card-details">
+            <p class="name">{{ product.shortDescription }}</p>
+            <p class="price">{{ product.price | currency }}</p>
+            <p class="rank">Rank: {{ product.rank }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

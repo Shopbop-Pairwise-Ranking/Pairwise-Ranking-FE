@@ -1,0 +1,124 @@
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* Tabs Section */
+  .tabs-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .tab:hover {
+    background-color: #ececec;
+  }
+
+  .tab.active {
+    color: #8ADB7F;
+    border-bottom: 3px solid #8ADB7F;
+    font-weight: bold;
+  }
+
+  /* Content Section */
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Timestamp */
+  .timestamp {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #888;
+  }
+
+  .timestamp span {
+    color: #E29D8B;
+    font-weight: bold;
+  }
+
+  /* Product Layout */
+  .product-layout {
+    display: flex;
+    gap: 15px;
+  }
+
+  /* Product Grid (Top 3 Cards) */
+  .product-grid {
+    display: flex;
+    flex: 3;
+    gap: 15px;
+  }
+
+  .large-card {
+    flex: 1;
+    height: 500px; /* Uniform height for large cards */
+    width: 100%;
+  }
+
+  /* List Column (4th Column) */
+  .list-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* List Cards */
+  .list-card {
+    display: flex;
+    gap: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .list-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .list-card-image img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .list-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .list-card-details .name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .list-card-details .price {
+    font-size: 0.85rem;
+    color: #E29D8B;
+  }
+
+  .list-card-details .rank {
+    font-size: 0.75rem;
+    color: #555;
+  }

@@ -28,6 +28,15 @@ export class ProductRankingService {
     });
   }
 
+  getLatestTrending(category: string): Observable<any> {
+    const params = `?categoryId=${category}`;
+    return this.http.get(`${environment.apiBaseUrl}/api/trending-products${params}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
   submitRankings(payload: any, userId: string, categoryId: string): Observable<any> {
     return this.http.post(`${environment.apiBaseUrl}/api/update-ranking/user/${userId}/category/${categoryId}`, payload);
   }
