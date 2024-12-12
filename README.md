@@ -1,77 +1,151 @@
-# Pairwise-Ranking-FE
+# Pairwise Ranking Frontend
+
+## Demo Link
+
+The frontend is live and deployed at: [Amazon CloudFront](https://d2h7mbvn5z1qtj.cloudfront.net)
+
+## Repository Link
+
+[GitHub Repository](https://github.com/Shopbop-Pairwise-Ranking/Pairwise-Ranking-FE)
+
+---
 
 ## Project Overview
-The **Pairwise Ranking Frontend** is part of a fashion discovery platform for Shopbop, an Amazon company. It offers users an intuitive interface to compare and rank fashion items in a pairwise ranking system. The data collected is used to display leaderboards of popular items by category, providing an engaging and interactive shopping experience. This frontend is built with Angular and integrates with Shopbop's API for real-time product updates.
 
-## Features
+The **Pairwise Ranking Frontend** is part of a fashion discovery platform for **Shopbop**, an Amazon company. It provides an intuitive interface for users to compare and rank fashion items dynamically. The frontend seamlessly integrates with the backend APIs to fetch product data, rankings, and trending information, offering an engaging and interactive shopping experience. This application is built using Angular and follows modern design practices for scalability.
 
-- **Interactive Ranking System:** Users can compare two items at a time and rank them based on preferences.
-- **Leaderboard View:** Displays the top-ranked items categorized by clothing type or gender.
-- **User Authentication:** Login and signup functionalities to secure user data.
-- **API Integration:** Fetches product data, rankings, and trending information dynamically.
-- **Responsive Design:** Seamlessly adjusts for desktop and mobile interfaces.
+### Key Features
 
-## Key Components
+- **Interactive Ranking System**: Allows users to compare two items at a time and rank them based on preferences.
+- **Leaderboard View**: Displays the top-ranked items categorized by clothing type or gender.
+- **User Authentication**: Includes login and signup functionalities to secure user data.
+- **API Integration**: Fetches product data, rankings, and trending information dynamically.
 
-### Configurations
-- **`angular.json`:** Project configuration for Angular CLI.
-- **`tsconfig.json`:** TypeScript configuration for project compilation.
-- **`environment.ts`:** Environment-specific variables for API integration.
+---
 
-### Components
-- **`banner-top`:** Displays a promotional or navigational banner at the top of the application.
-- **`footer`:** Contains the footer section of the application, providing copyright information.
-- **`image-card`:** A reusable component to display individual product images and details.
-- **`navbar`:** Implements the navigation bar for the application.
-- **`product-card`:** Represents individual products in the ranking interface.
-- **`rank-card`:** Shows details of ranked items, used in the leaderboard view.
+## Setup Steps
 
-### Interfaces
-- **`latest-ranking-response.ts`:** Defines the structure of the API response for the latest rankings.
-- **`matchups.ts`:** Specifies the data structure for ranking matchups between items.
-- **`product.ts`:** Details the product data structure fetched from the API.
+### Prerequisites
 
-### Services
-- **`auth.service.ts`:** Manages user authentication, including login and signup operations.
-- **`product-ranking.service.ts`:** Handles API calls for fetching product ranking data, submitting matchups, and retrieving leaderboard results.
+- **Node.js**: Ensure Node.js is installed (version 14.x or higher).
+- **Angular CLI**: Install Angular CLI globally:
+  ```bash
+  npm install -g @angular/cli
+  ```
+- **Environment Variables**: Ensure backend API endpoints are accessible and update the `environment.ts` file accordingly.
 
-### Pages
-- **`category-clothing`:** Displays items filtered by specific clothing categories.
-- **`category-gender`:** Lists items categorized by gender (e.g., men's and women's fashion).
-- **`home`:** The main landing page that introduces the pairwise ranking system.
-- **`login`:** Allows users to log into their accounts.
-- **`product-ranking`:** The core ranking page where users can compare and rank items.
-- **`signup`:** Facilitates new user registration.
-- **`trending`:** Shows a list of currently trending products based on user interactions.
+### Installation Steps
 
-### Assets
-- **`assets/images`:** Contains static images used in the application.
+1. Clone the repository:
 
-## Development Instructions
+   ```bash
+   git clone https://github.com/Shopbop-Pairwise-Ranking/Pairwise-Ranking-FE.git
+   ```
 
-### Development Server
-Run `ng serve` for a development server. Navigate to [http://localhost:4200/](http://localhost:4200/). The app will automatically reload if you make changes to the source files.
+2. Navigate to the project directory:
 
-### Code Scaffolding
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+   ```bash
+   cd Pairwise-Ranking-FE
+   ```
 
-### Build
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Install dependencies:
 
-### Running Unit Tests
-Run `ng test` to execute the unit tests using Karma.
+   ```bash
+   npm install
+   ```
 
-### Running End-to-End Tests
-Run `ng e2e` to execute end-to-end tests. Ensure a testing package is installed for this feature.
+4. Start the development server:
 
-## Repo Contents
-- **`angular.json`:** Configuration file for Angular CLI.
-- **`package.json` and `package-lock.json`:** Lists project dependencies.
-- **`src/`:** Contains all source files, including:
-  - **`app/`:** Application logic with components, services, interfaces, and routes.
-  - **`assets/`:** Static files like images.
-  - **`environments/`:** Configuration files for different environments.
-- **`README.md`:** Documentation for the frontend project.
+   ```bash
+   ng serve
+   ```
 
-## Further Help
-For additional Angular CLI help, run `ng help` or visit the [Angular CLI documentation](https://angular.io/cli).
+   The application will run on `http://localhost:4200/` by default.
+
+5. Build the project for production (optional):
+
+   ```bash
+   ng build --prod
+   ```
+
+The frontend is deployed at: [Amazon CloudFront](https://d2h7mbvn5z1qtj.cloudfront.net)
+
+---
+
+## How the Code Works
+
+### Code Structure
+
+The project is organized into the following key components:
+
+#### Configurations
+
+- **angular.json**: Project configuration for Angular CLI.
+- **tsconfig.json**: TypeScript configuration for project compilation.
+- **environment.ts**: Environment-specific variables for API integration.
+
+#### Components
+
+- **navbar**: Implements the navigation bar for the application.
+- **product-ranking**: Provides the core ranking interface for comparing items.
+- **leaderboard**: Displays ranked items by category.
+- **login**: Implements the login interface for user authentication.
+- **signup**: Facilitates user registration.
+- **trending**: Shows trending products based on user rankings.
+- **footer**: Displays the footer section with basic application details.
+
+#### Services
+
+- **auth.service.ts**: Handles user authentication by integrating with the backend.
+- **product-ranking.service.ts**: Manages API calls for fetching product ranking data and submitting user rankings.
+- **trending.service.ts**: Fetches trending product information from the backend.
+
+#### Interfaces
+
+- **product.ts**: Defines the structure for product-related data.
+- **ranking.ts**: Specifies the data format for ranking submissions.
+- **user.ts**: Details user-related data structures.
+
+#### Pages
+
+- **home**: Landing page introducing the ranking system.
+- **product-ranking**: Main interface for comparing and ranking products.
+- **leaderboard**: Displays top-ranked products by category.
+- **login**: Authentication page for user login.
+- **signup**: Registration page for new users.
+- **trending**: Showcases trending products.
+
+#### Assets
+
+- **assets/images**: Stores static images used in the application.
+
+---
+
+## What Works and What Doesn’t
+
+### What Works
+
+- **Interactive Ranking System**: Users can rank products effectively.
+- **Leaderboard**: Displays rankings dynamically based on user activity.
+- **API Integration**: Communicates effectively with the backend for data retrieval and submission.
+
+### What Doesn’t Work
+
+- **Responsive Design**: Currently, the app does not adjust seamlessly for desktop and mobile platforms.
+- **Error Handling**: Needs improvement for better handling of API failures or invalid inputs.
+- **Accessibility**: Some UI components need enhancements for accessibility compliance.
+- **Performance Optimization**: Large datasets may affect loading times; pagination or lazy loading could be implemented.
+
+---
+
+## Next Steps
+
+1. **Enhance Error Handling**: Improve error messages and fallback mechanisms for API issues.
+2. **Optimize Performance**: Implement lazy loading for large datasets.
+3. **Add Unit and Integration Tests**: Increase test coverage for critical components and services.
+4. **Improve Accessibility**: Ensure compliance with WCAG standards.
+5. **Implement Responsive Design**: Make the app fully functional on all devices, including desktops and mobiles.
+6. **Analytics Integration**: Add tracking to monitor user interactions and optimize user experience.
+7. **Dark Mode**: Introduce a dark mode for improved usability.
+
+---
